@@ -346,7 +346,20 @@
  <body>
   <div class="container scene text-center">
    <h1 class="title">Bakar Ayam Bersama Asmawi</h1>
-   
+   <!-- Grill Section -->
+   <div class="grill-container">
+    <div class="grill">
+     <div class="flame"></div>
+     <!-- Multiple Smoke Elements with varying delays -->
+     <div class="smoke" style="left: 40%; animation-delay: 0s"></div>
+     <div class="smoke" style="left: 50%; animation-delay: 1s"></div>
+     <div class="smoke" style="left: 60%; animation-delay: 2s"></div>
+     <!-- Sizzling Chicken Pieces -->
+     <div class="chicken ch1"></div>
+     <div class="chicken ch2"></div>
+     <div class="chicken ch3"></div>
+    </div>
+   </div>
    <!-- People Gathering -->
    <div class="people">
     <div class="person">
@@ -415,6 +428,29 @@
    style="display: none"
   ></audio>
 
+  <!-- Background Music with Play Button for Mobile -->
+  <audio
+   id="background-music"
+   src="budak_genz.mp3"
+   loop
+   preload="auto"
+   style="display: none"
+  ></audio>
+  <button
+   id="playMusic"
+   style="
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    padding: 10px 20px;
+    font-size: 16px;
+   "
+  >
+   Tap to Play Music
+  </button>
+
   <!-- YouTube IFrame API Script -->
   <script>
    // Load the IFrame Player API code asynchronously.
@@ -467,6 +503,26 @@
    // Listen for user interactions
    document.addEventListener('click', playBackgroundMusic);
    document.addEventListener('touchstart', playBackgroundMusic);
+  </script>
+  <script>
+   function startMusic() {
+    var audio = document.getElementById('background-music');
+    audio
+     .play()
+     .then(function () {
+      // Hide the button once music starts playing
+      document.getElementById('playMusic').style.display = 'none';
+     })
+     .catch(function (error) {
+      console.error('Error playing audio:', error);
+     });
+   }
+
+   // Listen for both click and touch events for better mobile compatibility
+   document.getElementById('playMusic').addEventListener('click', startMusic);
+   document
+    .getElementById('playMusic')
+    .addEventListener('touchend', startMusic);
   </script>
   <!-- Load YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
