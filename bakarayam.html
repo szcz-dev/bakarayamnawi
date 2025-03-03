@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bakar Bakar Ayam Bersama Nawi</title>
+  <!-- Bootstrap CSS -->
+  <link
+   rel="stylesheet"
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+   /* Animated Gradient Background (Sunset to Dawn) */
+   body {
+    margin: 0;
+    padding: 0;
+    background: url('nawi.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    /* Ensure content sits above the overlay */
+    z-index: 1;
+   }
+
+   /* Shadow Overlay */
+   body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(
+     0,
+     0,
+     0,
+     0.4
+    ); /* Adjust opacity for a lighter or darker shadow */
+    z-index: -1;
+    pointer-events: none;
+   }
+
+   @keyframes gradientBG {
+    0% {
+     background-position: 0% 50%;
+    }
+    50% {
+     background-position: 100% 50%;
+    }
+    100% {
+     background-position: 0% 50%;
+    }
+   }
+   /* Scene Container */
+   .scene {
+    position: relative;
+    padding: 50px 20px;
+   }
+   .title {
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 50px;
+   }
+   /* Grill Container */
+   .grill-container {
+    position: relative;
+    margin: 0 auto;
+    width: 500px;
+    height: 80px;
+   }
+   /* Detailed Grill */
+   .grill {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #3e3e3e;
+    border-radius: 15px;
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+   }
+   .grill::before,
+   .grill::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    height: 2px;
+    background: #555;
+   }
+   .grill::before {
+    top: 12px;
+   }
+   .grill::after {
+    top: 26px;
+   }
+   /* Multi-Layered Flame */
+   .flame {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 70px;
+    background: radial-gradient(circle at 50% 60%, #ffdd57, #ff6f00);
+    border-radius: 50% 50% 40% 40%;
+    box-shadow: 0 0 15px rgba(255, 111, 0, 0.8);
+    animation: flicker 1s infinite alternate;
+   }
+   @keyframes flicker {
+    0% {
+     transform: translateX(-50%) scale(1);
+     opacity: 1;
+    }
+    50% {
+     transform: translateX(-50%) scale(1.2);
+     opacity: 0.8;
+    }
+    100% {
+     transform: translateX(-50%) scale(1);
+     opacity: 1;
+    }
+   }
+   /* Dynamic Smoke Effects */
+   .smoke {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: rgba(220, 220, 220, 0.6);
+    border-radius: 50%;
+    animation: smokeRise 4s infinite ease-in-out;
+   }
+   @keyframes smokeRise {
+    0% {
+     transform: translateX(-50%) translateY(0) scale(1);
+     opacity: 0.7;
+    }
+    100% {
+     transform: translateX(-50%) translateY(-100px) scale(1.5);
+     opacity: 0;
+    }
+   }
+   /* Sizzling Chicken Pieces */
+   .chicken {
+    position: absolute;
+    width: 50px;
+    height: 35px;
+    background: linear-gradient(145deg, #d2691e, #a0522d);
+    border-radius: 50% 50% 40% 40%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    animation: sizzle 2s infinite alternate;
+   }
+   @keyframes sizzle {
+    from {
+     transform: rotate(0deg) translateY(0);
+    }
+    to {
+     transform: rotate(3deg) translateY(-3px);
+    }
+   }
+   /* Positioning Chicken Pieces on Grill */
+   .chicken.ch1 {
+    top: 5px;
+    left: 15%;
+    transform: rotate(-5deg);
+   }
+   .chicken.ch2 {
+    top: 5px;
+    left: 45%;
+    transform: rotate(0deg);
+   }
+   .chicken.ch3 {
+    top: 5px;
+    left: 75%;
+    transform: rotate(8deg);
+   }
+   /* People Gathering */
+   .people {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+   }
+   .person {
+    position: relative;
+    margin: 20px;
+    width: 70px;
+    height: 140px;
+    animation: bobbing 3s infinite ease-in-out;
+   }
+   @keyframes bobbing {
+    0% {
+     transform: translateY(0);
+    }
+    50% {
+     transform: translateY(-10px);
+    }
+    100% {
+     transform: translateY(0);
+    }
+   }
+   /* Person Head */
+   .person .head {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: #f1c27d;
+    border: 3px solid #8b4513;
+    border-radius: 50%;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+   }
+   /* Person Body */
+   .person .body {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 70px;
+    background: #4682b4;
+    border: 3px solid #1c6ea4;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+   }
+   /* Arms */
+   .person .arm {
+    position: absolute;
+    top: 70px;
+    width: 18px;
+    height: 10px;
+    background: #f1c27d;
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+   }
+   .person .arm.left {
+    left: -20px;
+    transform: rotate(20deg);
+   }
+   .person .arm.right {
+    right: -20px;
+    transform: rotate(-20deg);
+   }
+   /* Legs */
+   .person .leg {
+    position: absolute;
+    bottom: 0;
+    width: 12px;
+    height: 30px;
+    background: #000;
+    border-radius: 3px;
+   }
+   .person .leg.left {
+    left: 10px;
+   }
+   .person .leg.right {
+    right: 10px;
+   }
+   /* Extra Details for Character & Style */
+   .person .hat {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 20px;
+    background: #8b4513;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom: 5px solid #654321;
+   }
+   .person .smile {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 10px;
+    border-bottom: 2px solid #8b4513;
+    border-radius: 0 0 10px 10px;
+   }
+  </style>
+
+  <style>
+   /* Full-Section Container */
+   .full-animation-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+   }
+   /* Animated Images: Centered and fully visible */
+   .anim-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Center the image */
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    animation: fadeSlide 9s infinite;
+   }
+
+   /* Keyframes for sequential fade & slide animation */
+   @keyframes fadeSlide {
+    0% {
+     opacity: 0;
+     transform: translate(-50%, -50%) translateX(-100%);
+    }
+    10% {
+     opacity: 1;
+     transform: translate(-50%, -50%) translateX(0);
+    }
+    30% {
+     opacity: 1;
+     transform: translate(-50%, -50%) translateX(0);
+    }
+    40% {
+     opacity: 0;
+     transform: translate(-50%, -50%) translateX(100%);
+    }
+    100% {
+     opacity: 0;
+     transform: translate(-50%, -50%) translateX(100%);
+    }
+   }
+
+   /* Stagger the animations so only one image shows at a time */
+   .anim1 {
+    animation-delay: 0s;
+   }
+   .anim2 {
+    animation-delay: 3s;
+   }
+   .anim3 {
+    animation-delay: 6s;
+   }
+  </style>
+ </head>
+ <body>
+  <div class="container scene text-center">
+   <h1 class="title">Bakar Ayam Bersama Asmawi</h1>
+   <!-- Grill Section -->
+   <div class="grill-container">
+    <div class="grill">
+     <div class="flame"></div>
+     <!-- Multiple Smoke Elements with varying delays -->
+     <div class="smoke" style="left: 40%; animation-delay: 0s"></div>
+     <div class="smoke" style="left: 50%; animation-delay: 1s"></div>
+     <div class="smoke" style="left: 60%; animation-delay: 2s"></div>
+     <!-- Sizzling Chicken Pieces -->
+     <div class="chicken ch1"></div>
+     <div class="chicken ch2"></div>
+     <div class="chicken ch3"></div>
+    </div>
+   </div>
+   <!-- People Gathering -->
+   <div class="people">
+    <div class="person">
+     <div class="hat"></div>
+     <div class="head"></div>
+     <div class="smile"></div>
+     <div class="body"></div>
+     <div class="arm left"></div>
+     <div class="arm right"></div>
+     <div class="leg left"></div>
+     <div class="leg right"></div>
+    </div>
+    <div class="person">
+     <div class="hat" style="background: #333"></div>
+     <div class="head" style="background: #f3d1b0"></div>
+     <div class="smile"></div>
+     <div class="body" style="background: #ff7f50; border-color: #e6734c"></div>
+     <div class="arm left"></div>
+     <div class="arm right"></div>
+     <div class="leg left"></div>
+     <div class="leg right"></div>
+    </div>
+    <div class="person">
+     <div class="hat" style="background: #4b3621"></div>
+     <div class="head" style="background: #f0d5b1"></div>
+     <div class="smile"></div>
+     <div class="body" style="background: #6495ed; border-color: #417dc1"></div>
+     <div class="arm left"></div>
+     <div class="arm right"></div>
+     <div class="leg left"></div>
+     <div class="leg right"></div>
+    </div>
+    <div class="person">
+     <div class="hat" style="background: #7f5539"></div>
+     <div class="head" style="background: #f5e1a4"></div>
+     <div class="smile"></div>
+     <div class="body" style="background: #90ee90; border-color: #66bb6a"></div>
+     <div class="arm left"></div>
+     <div class="arm right"></div>
+     <div class="leg left"></div>
+     <div class="leg right"></div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Full Section Animated Slideshow (Sequential Animation) -->
+  <div class="full-animation-section">
+   <img src="nawi.jpg" alt="Slide 1" class="anim-image anim1" />
+   <img src="nawi2.jpg" alt="Slide 2" class="anim-image anim2" />
+   <img src="nawi3.jpg" alt="Slide 3" class="anim-image anim3" />
+  </div>
+
+  <!-- Video Section with 4-Second Loop -->
+  <div class="container mt-5 mb-3">
+   <h2 class="text-center mb-4" style="color: #ffffff">BAKAR BAKAR BAH</h2>
+   <div class="embed-responsive embed-responsive-16by9">
+    <div id="ytplayer"></div>
+   </div>
+  </div>
+
+  <audio
+   id="background-music"
+   src="budak_genz.mp3"
+   loop
+   preload="auto"
+   style="display: none"
+  ></audio>
+
+  <!-- YouTube IFrame API Script -->
+  <script>
+   // Load the IFrame Player API code asynchronously.
+   var tag = document.createElement('script');
+   tag.src = 'https://www.youtube.com/iframe_api';
+   var firstScriptTag = document.getElementsByTagName('script')[0];
+   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+   var player;
+   function onYouTubeIframeAPIReady() {
+    player = new YT.Player('ytplayer', {
+     videoId: 'x_mp2ZZOrl4',
+     playerVars: {
+      autoplay: 1,
+      controls: 0,
+      start: 0,
+      end: 4,
+      rel: 0,
+      showinfo: 0,
+      modestbranding: 1,
+     },
+     events: {
+      onStateChange: onPlayerStateChange,
+     },
+    });
+   }
+
+   function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+     // When the video ends (after 4 seconds), seek back to 0 and play again.
+     player.seekTo(0);
+     player.playVideo();
+    }
+   }
+  </script>
+
+  <script>
+   function playBackgroundMusic() {
+    var audio = document.getElementById('background-music');
+    if (audio.paused) {
+     audio.play().catch(function (error) {
+      console.error('Audio playback failed:', error);
+     });
+    }
+    // Remove these event listeners once playback starts
+    document.removeEventListener('click', playBackgroundMusic);
+    document.removeEventListener('touchstart', playBackgroundMusic);
+   }
+
+   // Listen for user interactions
+   document.addEventListener('click', playBackgroundMusic);
+   document.addEventListener('touchstart', playBackgroundMusic);
+  </script>
+  <!-- Load YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+ </body>
+</html>
