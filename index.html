@@ -348,17 +348,28 @@
    <h1 class="title">Bakar Ayam Bersama Asmawi</h1>
    <!-- Grill Section -->
    <div class="grill-container">
-    <div class="grill">
-     <div class="flame"></div>
-     <!-- Multiple Smoke Elements with varying delays -->
-     <div class="smoke" style="left: 40%; animation-delay: 0s"></div>
-     <div class="smoke" style="left: 50%; animation-delay: 1s"></div>
-     <div class="smoke" style="left: 60%; animation-delay: 2s"></div>
-     <!-- Sizzling Chicken Pieces -->
-     <div class="chicken ch1"></div>
-     <div class="chicken ch2"></div>
-     <div class="chicken ch3"></div>
-    </div>
+    <!-- Background Music with Play Button for Mobile -->
+    <audio
+     id="background-music"
+     src="budak_genz.mp3"
+     loop
+     preload="auto"
+     style="display: none"
+    ></audio>
+    <button
+     id="playMusic"
+     style="
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10000;
+      padding: 10px 20px;
+      font-size: 16px;
+     "
+    >
+     Tap to Play Music
+    </button>
    </div>
    <!-- People Gathering -->
    <div class="people">
@@ -427,29 +438,6 @@
    preload="auto"
    style="display: none"
   ></audio>
-
-  <!-- Background Music with Play Button for Mobile -->
-  <audio
-   id="background-music"
-   src="budak_genz.mp3"
-   loop
-   preload="auto"
-   style="display: none"
-  ></audio>
-  <button
-   id="playMusic"
-   style="
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10000;
-    padding: 10px 20px;
-    font-size: 16px;
-   "
-  >
-   Tap to Play Music
-  </button>
 
   <!-- YouTube IFrame API Script -->
   <script>
